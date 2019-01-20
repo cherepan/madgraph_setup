@@ -1,6 +1,6 @@
 Universe = vanilla 
-Executable = short.sh 
-Arguments = 1 2 3
+Executable = runcmsgrid.sh
+Arguments = 200 34 4 # n events, seed, nCPU
 Error = log/job.err.$(Cluster)-$(Process) 
 Output = log/job.out.$(Cluster)-$(Process) 
 Log = log/job.log.$(Cluster) 
