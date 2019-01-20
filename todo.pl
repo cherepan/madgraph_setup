@@ -35,6 +35,7 @@ for($l=0;$l<$numArgs; $l++){
 	if($ARGV[1] ne ""){
 	    $basedir=$ARGV[1];
 	}
+
 	$CMSPATH="/CMSSW_$CMSSWRel";
 	$CMSSW_BASE="$basedir$CMSPATH";
 	system(sprintf("rm  Setup_gridpack"));
@@ -46,7 +47,7 @@ for($l=0;$l<$numArgs; $l++){
 	system(sprintf("echo \"cd $currentdir/$CMSSW_BASE/src\" >> Setup_gridpack")); 
 	system(sprintf("echo \"scram b -j 4\" >> Setup_gridpack")); 
 
-	system(sprintf("echo \"cp ../DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz .\" >> Setup_gridpack")); 
+	system(sprintf("echo \"cp /grid_mnt/home-pbs/vcherepa/MadGraph/gridpack/DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz .\" >> Setup_gridpack")); 
 	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz \" >> Setup_gridpack")); 
 	system(sprintf("echo \"cp ../../../submit .  \" >> Setup_gridpack")); 
 
