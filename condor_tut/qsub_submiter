@@ -25,6 +25,14 @@ for var in $@ ; do
 export HOME=$(pwd)
 jName=${1}
 var=${1}
+
+
+pnEv=${2}
+pseed=${3}
+pncpu=${4}
+
+echo "${pnEv}"
+
 output="out_${1}.o"
 error="err_${1}.e"
 echo "Print out system variables:    "
@@ -33,6 +41,7 @@ echo "Job name:  ${jName} "
 echo "que type:  ${que} "
 echo "output:    ${output}    "
 echo "error:     ${error}    "
-qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName}   short.sh
+qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName},seed=${pseed},ncpu=${pncpu},nEv=${pnEv}  short.sh 
+#qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName} -F "1 2 3"   short.sh 
 fi
 #-v FOO="hello",BAR="world"
