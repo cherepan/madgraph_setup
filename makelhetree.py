@@ -42,9 +42,12 @@ def invariant_mass(p1,p2):
     return math.sqrt(sum((1 if mu=='e' else -1)*(getattr(p1,mu)+getattr(p2,mu))**2 for mu in ['e','px','py','pz']))
 
 
-for e in pylhe.readLHE('events.lhe'):
-    h.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
-    zmass[0]=invariant_mass(e.particles[-1],e.particles[-2]);
+for e in pylhe.readLHE('cmsgrid_final.lhe'):
+    if abs(getattr(e.particles[-1],'id'))==15 and abs(getattr(e.particles[-2],'id'))==15:
+        h.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
+        zmass[0]=invariant_mass(e.particles[-1],e.particles[-2]);
+
+        print "id of interracting particles:  ", getattr(e.particles[-1],'id')
     if getattr(e.particles[-1],'id')==15: #c'est tau
         if getattr(e.particles[-1],'spin')==-1:
             neg.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
