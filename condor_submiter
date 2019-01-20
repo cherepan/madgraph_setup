@@ -1,0 +1,7 @@
+Universe = vanilla 
+Executable = short.sh 
+Arguments = 1 2 3
+Error = log/job.err.$(Cluster)-$(Process) 
+Output = log/job.out.$(Cluster)-$(Process) 
+Log = log/job.log.$(Cluster) 
+Queue 1
