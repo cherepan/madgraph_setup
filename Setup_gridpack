@@ -1,0 +1,10 @@
+mkdir set
+cd set
+cmsrel CMSSW_9_4_4
+cd CMSSW_9_4_4/src
+cmsenv
+cd /grid_mnt/home-pbs/vcherepa/MadGraph/gridpack/madgraph_setup/set/CMSSW_9_4_4/src
+scram b -j 4
+cp /grid_mnt/home-pbs/vcherepa/MadGraph/gridpack/DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz .
+tar -xvf DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz 
+cp ../../../submit .  
