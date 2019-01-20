@@ -41,7 +41,7 @@ echo "Job name:  ${jName} "
 echo "que type:  ${que} "
 echo "output:    ${output}    "
 echo "error:     ${error}    "
-qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName},nevt=${pnEv},rnum=${pseed},ncpu=${pncpu}  runcmsgrid.sh
+qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName} -w $(pwd) runcmsgrid.sh
 #qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName} -F "1 2 3"   short.sh 
 fi
 #-v FOO="hello",BAR="world"

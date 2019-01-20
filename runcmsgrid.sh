@@ -1,20 +1,29 @@
 #!/bin/bash
+export  HOME=$(pwd)
 
+env
 
-export workdir=$(pwd)
-export HOME=$(pwd)
-
-#nevt=${1}
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+nevt=100
 echo "%MSG-MG5 number of events requested = $nevt"
 
-#rnum=${2}
+rnum=34
 echo "%MSG-MG5 random seed used for the run = $rnum"
 
-#ncpu=${3}
+ncpu=2
 echo "%MSG-MG5 number of cpus = $ncpu"
 
 LHEWORKDIR=`pwd`
+#ls 
+#ls
 
+echo "------- home dir is $HOME"
+echo "------- home dir is $(pwd)"
+echo "ssssss     $PBS_O_WORKDIR"
+
+ls
+
+cd $PBS_O_WORKDIR
 cd process
 
 #make sure lhapdf points to local cmssw installation area
