@@ -47,7 +47,8 @@ for($l=0;$l<$numArgs; $l++){
 	system(sprintf("echo \"scram b -j 4\" >> Setup_gridpack")); 
 
 	system(sprintf("echo \"cp /local-scratch/vladimircherepanov/storage/DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz .\" >> Setup_gridpack")); 
-	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball.tar.xz \" >> Setup_gridpack")); 
+	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz \" >> Setup_gridpack")); 
+	system(sprintf("echo \"cp ../../../submit .  \" >> Setup_gridpack")); 
 
 
     }
