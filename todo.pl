@@ -49,7 +49,8 @@ for($l=0;$l<$numArgs; $l++){
 
 	system(sprintf("echo \"cp /grid_mnt/home-pbs/vcherepa/MadGraph/gridpack/DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz .\" >> Setup_gridpack")); 
 	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball_modified_TTMassNearZ.tar.xz \" >> Setup_gridpack")); 
-	system(sprintf("echo \"cp ../../../submit .  \" >> Setup_gridpack")); 
+	system(sprintf("echo \"cp ../../../submitqsub .  \" >> Setup_gridpack")); 
+
 
 
     }
