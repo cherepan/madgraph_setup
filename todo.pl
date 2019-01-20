@@ -37,17 +37,17 @@ for($l=0;$l<$numArgs; $l++){
 	}
 	$CMSPATH="/CMSSW_$CMSSWRel";
 	$CMSSW_BASE="$basedir$CMSPATH";
-	system(sprintf("rm  install"));
-	system(sprintf("echo \"mkdir $basedir\" >>  install")); 
-	system(sprintf("echo \"cd $basedir\" >>  install")); 
-	system(sprintf("echo \"cmsrel CMSSW_$CMSSWRel\" >>  install")); 
-	system(sprintf("echo \"cd CMSSW_$CMSSWRel/src\" >> install")); 
-	system(sprintf("echo \"cmsenv\" >> install")); 
-	system(sprintf("echo \"cd $currentdir/$CMSSW_BASE/src\" >> install")); 
-	system(sprintf("echo \"scram b -j 4\" >> install")); 
+	system(sprintf("rm  Setup_gridpack"));
+	system(sprintf("echo \"mkdir $basedir\" >>  Setup_gridpack")); 
+	system(sprintf("echo \"cd $basedir\" >>  Setup_gridpack")); 
+	system(sprintf("echo \"cmsrel CMSSW_$CMSSWRel\" >>  Setup_gridpack")); 
+	system(sprintf("echo \"cd CMSSW_$CMSSWRel/src\" >> Setup_gridpack")); 
+	system(sprintf("echo \"cmsenv\" >> Setup_gridpack")); 
+	system(sprintf("echo \"cd $currentdir/$CMSSW_BASE/src\" >> Setup_gridpack")); 
+	system(sprintf("echo \"scram b -j 4\" >> Setup_gridpack")); 
 
-	system(sprintf("echo \"cp /local-scratch/vladimircherepanov/storage/DYJets_HT-incl_tarball.tar.xz .\" >> install")); 
-	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball.tar.xz \" >> install")); 
+	system(sprintf("echo \"cp /local-scratch/vladimircherepanov/storage/DYJets_HT-incl_tarball.tar.xz .\" >> Setup_gridpack")); 
+	system(sprintf("echo \"tar -xvf DYJets_HT-incl_tarball.tar.xz \" >> Setup_gridpack")); 
 
 
     }

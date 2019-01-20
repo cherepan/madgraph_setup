@@ -33,14 +33,24 @@ output_tree.Branch("pdgid", pdgid, "pdgid/F")
 
 h = ROOT.TH1F('invmass','Invariant Mass of Final State',150,0,175)
 h.SetFillColor(38)
+pos = ROOT.TH1F('pos','Invariant Mass of Final pos State',150,0,175)
+neg = ROOT.TH1F('neg','Invariant Mass of Final neg State',150,0,175)
+
+
 
 def invariant_mass(p1,p2):
     return math.sqrt(sum((1 if mu=='e' else -1)*(getattr(p1,mu)+getattr(p2,mu))**2 for mu in ['e','px','py','pz']))
 
 
-for e in pylhe.readLHE('unweighted_events_NLOQCD.lhe'):
+for e in pylhe.readLHE('events.lhe'):
     h.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
     zmass[0]=invariant_mass(e.particles[-1],e.particles[-2]);
+    if getattr(e.particles[-1],'id')==15: #c'est tau
+        if getattr(e.particles[-1],'spin')==-1:
+            neg.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
+        if getattr(e.particles[-1],'spin')== 1:
+            pos.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
+
     for p in e.particles:
         pdgid[0] = getattr(p,'id')  
         px[0] = getattr(p,'px')
