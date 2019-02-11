@@ -13,6 +13,7 @@ if($ARGV[0] eq "--help" || $ARGV[0] eq ""){
     printf("\n./todo.pl --help                                             Prints this message");
     printf("\n./todo.pl --setupmadgraph  <dir>                             Download and unpack the lates madgraph version to <dir> ");
     printf("\n./todo.pl --gridpack  <dir>                                  Run DYTarball gridpack, valid only for local.uscms.org ");
+    printf("\n.  run     PYTHONPATH=$PYTHONPATH:/usr/lib64/python2.6/site-packages; ./submit_condor_gridpack_generation.sh DYJets_HT-incl cards/production/2017/13TeV/DYJets_HT_LO_MLM/DYJets_HT_mll50/DYJets_HT-incl/  in the cloned generation pack ");
     printf("\n  ========================================================================================\n");
     exit(0);  
 }
