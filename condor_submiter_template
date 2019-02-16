@@ -1,0 +1,14 @@
+Universe = vanilla 
+rank     = memory 
+Executable = runcms_condor.sh
+Error = log/job.err.$(Cluster)-$(Process) 
+Output = log/job.out.$(Cluster)-$(Process) 
+Log = log/job.log.$(Cluster) 
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+notification = Error
+
+Arguments = a b c 
+
+Queue  1
+
