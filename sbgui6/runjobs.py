@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import argparse
-import numpy
 import os
 
 if __name__ == "__main__":
@@ -14,16 +13,16 @@ if __name__ == "__main__":
     cwd = os.getcwd()
 
     for i in range(1, args.number_of_jobs):
-        with open('runcmscondor_template.sh', 'r') as file :
+        with open('qsub_submit_template.sh', 'r') as file :
             filedata = file.read()
             outputdir = "output_"+str(i)
             if not os.path.exists(outputdir):
                 os.mkdir(outputdir)
             if not os.path.exists('log'):
                 os.mkdir('log')
-            filedata = filedata.replace('<copy environment>', 'cp -r ' + cwd  + '/* .')
-            filedata = filedata.replace('<output1>',
-                                        'mv process/madevent/Events/${runlabel}/events.lhe.gz '+outputdir+ '/cmsgrid_final_'+ str(i) +'.lhe.gz')
+            filedata = filedata.replace('<dir>', cwd)
+            filedata = filedata.replace('<exec>',
+                                        cwd+"/short.sh")
             filedata = filedata.replace('<output2>', 'gzip -d '+outputdir+'/cmsgrid_final_'+ str(i) +'.lhe.gz')
             filedata = filedata.replace('<output3>', 'cp -r  '+outputdir + '/*  ' + cwd + '/'+outputdir)
             filename = "runcms_condor_"+str(i)+".sh"
