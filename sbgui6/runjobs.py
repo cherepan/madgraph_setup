@@ -23,7 +23,7 @@ if __name__ == "__main__":
                 os.mkdir('log')
             filedata = filedata.replace('<dir>', cwd)
             filedata = filedata.replace('<exec>',
-                                        cwd+"/short.sh  " + str(args.number_of_events) + " " + str(seed) + " 4 ")
+                                        cwd+"/runcmsgrid.sh  " + str(args.number_of_events) + " " + str(seed) + " 4 ")
             filename = "qsub_"+str(i)+".sh"
             print filename
             with open(filename, 'w') as file:
