@@ -18,9 +18,9 @@ if __name__ == "__main__":
             outputdir = "output_"+str(i)
             seed = args.start_seed + i
             if not os.path.exists(outputdir):
-                os.mkdir(outputdir)
+#                os.mkdir(outputdir)
             if not os.path.exists('log'):
-                os.mkdir('log')
+#                os.mkdir('log')
             filedata = filedata.replace('<dir>', cwd)
             filedata = filedata.replace('<exec>',
                                         cwd+"/runcmsgrid.sh  " + str(args.number_of_events) + " " + str(seed) + " 4 ")
