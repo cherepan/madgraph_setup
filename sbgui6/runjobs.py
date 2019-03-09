@@ -16,27 +16,26 @@ if __name__ == "__main__":
         with open('qsub_submit_template.sh', 'r') as file :
             filedata = file.read()
             outputdir = "output_"+str(i)
+            seed = args.start_seed + i
             if not os.path.exists(outputdir):
                 os.mkdir(outputdir)
             if not os.path.exists('log'):
                 os.mkdir('log')
             filedata = filedata.replace('<dir>', cwd)
             filedata = filedata.replace('<exec>',
-                                        cwd+"/short.sh")
-            filedata = filedata.replace('<output2>', 'gzip -d '+outputdir+'/cmsgrid_final_'+ str(i) +'.lhe.gz')
-            filedata = filedata.replace('<output3>', 'cp -r  '+outputdir + '/*  ' + cwd + '/'+outputdir)
-            filename = "runcms_condor_"+str(i)+".sh"
+                                        cwd+"/short.sh  " + str(args.number_of_events) + " " + str(seed) + " 4 ")
+            filename = "qsub_"+str(i)+".sh"
             print filename
             with open(filename, 'w') as file:
                 file.write(filedata)
-        condorname= "condor_submiter_"+str(i)
-        with open("condor_submiter_template", "rwt") as submiter:
-            filedata = submiter.read()
-            seed = args.start_seed + i
-            filedata= filedata.replace("Executable = runcms_condor.sh","Executable = "+filename)
-            filedata= filedata.replace("Arguments = a b c","Arguments = "+str(args.number_of_events) + " " + str(seed) + " 4 ")
 
-            with open(condorname, 'w') as file:
+        qsubname= "submiter_"+str(i)
+        with open("submit_template", "rwt") as submiter:
+            filedata = submiter.read()
+            filedata= filedata.replace("<exec>",filename)
+
+            with open(qsubname, 'w') as file:
                 file.write(filedata)
         print "-- Submitting Job N:  ", i
-        os.system('condor_submit ' + condorname)
+        os.system('chmod u+x '+qsubname)
+        os.system('./' +qsubname  + ' ' + qsubname + ' --short')

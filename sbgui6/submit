@@ -33,6 +33,6 @@ echo "Job name:  ${jName} "
 echo "que type:  ${que} "
 echo "output:    ${output}    "
 echo "error:     ${error}    "
-qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName}   qsub_submit.sh 
+qsub -q ${que}  -o ${output} -e ${error} -N ${jName} -v outfile=${jName}  qsub_4.sh
 fi
 #-v FOO="hello",BAR="world"
