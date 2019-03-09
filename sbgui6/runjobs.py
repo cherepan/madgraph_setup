@@ -17,9 +17,9 @@ if __name__ == "__main__":
             filedata = file.read()
             outputdir = "output_"+str(i)
             seed = args.start_seed + i
-            if not os.path.exists(outputdir):
+#            if not os.path.exists(outputdir):
 #                os.mkdir(outputdir)
-            if not os.path.exists('log'):
+#            if not os.path.exists('log'):
 #                os.mkdir('log')
             filedata = filedata.replace('<dir>', cwd)
             filedata = filedata.replace('<exec>',
@@ -38,4 +38,4 @@ if __name__ == "__main__":
                 file.write(filedata)
         print "-- Submitting Job N:  ", i
         os.system('chmod u+x '+qsubname)
-        os.system('./' +qsubname  + ' ' + qsubname + ' --short')
+#        os.system('./' +qsubname  + ' ' + qsubname + ' --short')
