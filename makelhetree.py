@@ -53,8 +53,10 @@ if __name__ == "__main__":
     def invariant_mass(p1,p2):
         return math.sqrt(sum((1 if mu=='e' else -1)*(getattr(p1,mu)+getattr(p2,mu))**2 for mu in ['e','px','py','pz']))
 
-
+    num=0
     for e in pylhe.readLHE(args.input_file):
+        if num%1000==0:
+            print "Processing event number: ",num
         if abs(getattr(e.particles[-1],'id'))==15 and abs(getattr(e.particles[-2],'id'))==15:
             h.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
             zmass[0]=invariant_mass(e.particles[-1],e.particles[-2]);
