@@ -44,10 +44,10 @@ if __name__ == "__main__":
     output_tree.Branch("pdgid", pdgid, "pdgid/F")
     
     
-    h = ROOT.TH1F('invmass','Invariant Mass of Final State',150,0,175)
+    h = ROOT.TH1F('invmass','Invariant Mass of Final State',10,90,92)
     h.SetFillColor(38)
-    pos = ROOT.TH1F('pos','Invariant Mass of Final pos State',150,0,175)
-    neg = ROOT.TH1F('neg','Invariant Mass of Final neg State',150,0,175)
+    pos = ROOT.TH1F('pos','Invariant Mass of Final pos State',10,90,92)
+    neg = ROOT.TH1F('neg','Invariant Mass of Final neg State',10,90,92)
     
     
 
