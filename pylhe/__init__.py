@@ -5,9 +5,10 @@ class LHEFile(object):
         pass
 
 class LHEEvent(object):
-    def __init__(self,eventinfo,particles):
+    def __init__(self,eventinfo,particles,pdfwe):
         self.eventinfo = eventinfo
         self.particles = particles
+        self.pdfwe =  pdfwe
         for p in self.particles:
             p.event = self
 
@@ -22,6 +23,8 @@ class LHEEventInfo(object):
     @classmethod
     def fromstring(cls,string):
         return cls(**dict(zip(cls.fieldnames,map(float,string.split()))))
+
+
     
 
 class LHEParticle(object):
@@ -57,9 +60,14 @@ def readLHE(thefile):
                 eventdata,particles = data[0],data[1:]
                 eventinfo = LHEEventInfo.fromstring(eventdata)
                 particle_objs = []
+                pdfs = [0] # pointless first element
                 for p in particles:
                     particle_objs+=[LHEParticle.fromstring(p)]
-                yield LHEEvent(eventinfo,particle_objs)
+                for child in element:
+                    for subchild in child:
+                        if subchild.tag=='wgt':
+                            pdfs.append(subchild.text)
+                yield LHEEvent(eventinfo,particle_objs,pdfs)
     
     except ET.ParseError:
         print ("WARNING. Parse Error.")

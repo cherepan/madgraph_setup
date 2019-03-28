@@ -3,6 +3,7 @@
 import os
 import ROOT
 import pylhe
+import sys
 import math
 import argparse
 from array import array
@@ -55,12 +56,13 @@ if __name__ == "__main__":
 
     num=0
     for e in pylhe.readLHE(args.input_file):
+        num=num+1
         if num%1000==0:
             print "Processing event number: ",num
+#        print e.pdfwe[0],e.pdfwe[1],e.pdfwe[2]
         if abs(getattr(e.particles[-1],'id'))==15 and abs(getattr(e.particles[-2],'id'))==15:
             h.Fill(invariant_mass(e.particles[-1],e.particles[-2]),e.eventinfo.weight)
             zmass[0]=invariant_mass(e.particles[-1],e.particles[-2]);
-
 #        print "id of interracting particles:  ", getattr(e.particles[-1],'id')
         if getattr(e.particles[-1],'id')==15: #c'est tau
                 if getattr(e.particles[-1],'spin')==-1:
